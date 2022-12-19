@@ -2,14 +2,16 @@
   <div class="container">
     <my-header></my-header>
     <my-main></my-main>
+    <my-footer></my-footer>
   </div>
 </template>
 
 <script>
 import MyHeader from './components/Header.vue';
 import MyMain from './components/Main.vue';
+import MyFooter from './components/Footer.vue';
 export default {
-  components: { MyHeader, MyMain },
+  components: { MyHeader, MyMain, MyFooter },
   name: 'App',
 };
 </script>
@@ -22,7 +24,6 @@ export default {
   box-sizing: border-box;
 }
 .container {
-  height: 900px;
   background-color: #1e1e1e;
   padding: 36px 130px 0;
 }
