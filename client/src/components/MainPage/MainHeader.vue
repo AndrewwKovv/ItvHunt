@@ -5,36 +5,23 @@
       :fontFamily="'montSer'"
       :fontSize="32"
       :fontWeight="600"
-      :color="'#ffffff'"
     >
       <img
-        src="../assets/header_logo.svg"
+        src="@/assets/header_logo.svg"
         alt="Logo"
         class="header__logo__img"
       />
       ItvHunt
     </main-text>
     <nav class="header__nav">
-      <main-text
-        class="header__text"
-        :fontFamily="'montSer'"
-        :fontSize="18"
-        :color="'#ffffff'"
+      <main-text class="header__text" :fontFamily="'montSer'" :fontSize="18"
         >Возможности</main-text
       >
-      <main-text
-        class="header__text"
-        :fontFamily="'montSer'"
-        :fontSize="18"
-        :color="'#ffffff'"
+      <main-text class="header__text" :fontFamily="'montSer'" :fontSize="18"
         >Контакты</main-text
       >
       <my-button class="header__btn">
-        <main-text
-          class="header__text"
-          :fontFamily="'montSer'"
-          :fontSize="18"
-          :color="'#ffffff'"
+        <main-text class="header__text" :fontFamily="'montSer'" :fontSize="18"
           >Войти</main-text
         >
       </my-button>

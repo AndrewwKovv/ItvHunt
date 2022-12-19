@@ -20,7 +20,7 @@ export default {
         fontSize: (this.fontSize ?? 20) + 'px',
         fontStyle: this.fontStyle ?? 'normal',
         fontWeight: this.fontWeight ?? 400,
-        color: this.color ?? '#000000',
+        color: this.color ?? '#ffffff',
       },
     };
   },

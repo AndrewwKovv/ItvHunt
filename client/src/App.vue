@@ -1,15 +1,13 @@
 <template>
-  <div class="container">
-    <my-header></my-header>
-    <my-main></my-main>
+  <div class="cont">
+    <main-page></main-page>
   </div>
 </template>
 
 <script>
-import MyHeader from './components/Header.vue';
-import MyMain from './components/Main.vue';
+import MainPage from './components/MainPage/MyPage.vue';
 export default {
-  components: { MyHeader, MyMain },
+  components: { MainPage },
   name: 'App',
 };
 </script>
@@ -20,10 +18,5 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-.container {
-  height: 900px;
-  background-color: #1e1e1e;
-  padding: 36px 130px 0;
 }
 </style>
