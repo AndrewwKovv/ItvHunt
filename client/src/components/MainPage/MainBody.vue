@@ -14,7 +14,7 @@
           браузера
         </p>
       </main-text>
-      <my-button class="intro__btn">
+      <my-button class="intro__btn" @click="showDialog">
         <main-text
           class="intro__btn_text"
           :fontFamily="'montSer'"
@@ -24,6 +24,7 @@
           >Начать</main-text
         >
       </my-button>
+      <main-modal v-model:show="dialogVisible"></main-modal>
     </section>
     <section class="about">
       <div class="about__title">
@@ -44,7 +45,9 @@
     <section class="function">
       <nav class="function__nav">
         <i
-          :style="{ transform: 'translateX' + 100 + '%' }"
+          :style="{
+            transform: 'translateX' + '(' + currentSlideIndex + '%' + ')',
+          }"
           class="function__activeTabFocusLine"
         ></i>
         <button class="function__items-tb" @click="oneSlide">
@@ -79,7 +82,12 @@
         </button>
       </nav>
       <div class="function__desc">
-        <div class="function__desc-carasel" :style="currentSlideIndex">
+        <div
+          class="function__desc-carasel"
+          :style="{
+            transform: 'translateX(-' + currentSlideIndex + '%)',
+          }"
+        >
           <div class="function__desc_about">
             <img
               src="@/assets/function-task.svg"
@@ -108,17 +116,20 @@
               alt="about-task"
               class="function__desc_img"
             />
-            <main-text :fontFamily="'montSer'" :fontSize="28"
-              >Конструктор сценариев интервью</main-text
-            >
             <main-text
-              class="function__desc-subtitle"
+              class="function__desc-title"
               :fontFamily="'montSer'"
-              :fontSize="16"
-              >Подготовьте и используйте во время интервью шаблоны с<br />
-              вопросами и задачами. Вам доступны разделы по темам,<br />
-              блоки с вопросами, блок задач и блок навыков и знаний.<br />
-              Забудьте excel, гугл формс и пр.</main-text
+              :fontSize="28"
+              >Конструктор сценариев интервью
+              <main-text
+                class="function__desc-subtitle"
+                :fontFamily="'montSer'"
+                :fontSize="16"
+                >Подготовьте и используйте во время интервью шаблоны с<br />
+                вопросами и задачами. Вам доступны разделы по темам,<br />
+                блоки с вопросами, блок задач и блок навыков и знаний.<br />
+                Забудьте excel, гугл формс и пр.</main-text
+              ></main-text
             >
           </div>
           <div class="function__desc_about">
@@ -127,19 +138,24 @@
               alt="about-task"
               class="function__desc_img"
             />
-            <main-text :fontFamily="'montSer'" :fontSize="28">Отчёты</main-text>
             <main-text
-              class="function__desc-subtitle"
+              class="function__desc-title"
               :fontFamily="'montSer'"
-              :fontSize="16"
-              >Все результаты хранятся в карточке кандидата. Оценка<br />
-              интервьюера, ответы, задачи и код с интервью.</main-text
+              :fontSize="28"
+              >Отчёты
+              <main-text
+                class="function__desc-subtitle"
+                :fontFamily="'montSer'"
+                :fontSize="16"
+                >Все результаты хранятся в карточке кандидата. Оценка<br />
+                интервьюера, ответы, задачи и код с интервью.</main-text
+              ></main-text
             >
           </div>
         </div>
       </div>
       <div class="function__button">
-        <my-button class="function__btn">
+        <my-button class="function__btn" @click="showDialog">
           <main-text
             class="function__btn-text"
             :fontFamily="'montSer'"
@@ -149,6 +165,7 @@
             >Посмотреть все возможности</main-text
           >
         </my-button>
+        <main-modal v-model:show="dialogVisible"></main-modal>
       </div>
     </section>
     <section class="feedback">
@@ -211,22 +228,25 @@
 
 <script>
 export default {
-  name: 'my-main',
+  name: 'my-body',
   data() {
     return {
-      show: true,
       currentSlideIndex: 0,
+      dialogVisible: false,
     };
   },
   methods: {
     oneSlide() {
-      this.currentSlideIndex == 0;
+      this.currentSlideIndex = 0;
     },
     twoSlide() {
-      this.currentSlideIndex == 100;
+      this.currentSlideIndex = 100;
     },
     threeSlide() {
-      this.currentSlideIndex == 200;
+      this.currentSlideIndex = 200;
+    },
+    showDialog() {
+      this.dialogVisible = true;
     },
   },
 };
@@ -273,10 +293,6 @@ export default {
     background: none;
     cursor: pointer;
     width: calc(100% / 3);
-    opacity: 0.7;
-    &--active {
-      opacity: 1;
-    }
   }
   &__btn {
     max-width: 300px;
@@ -298,8 +314,6 @@ export default {
     width: calc(100% / 3);
     height: 6px;
     background: #4dd362;
-    -webkit-transition: 0.5s;
-    -moz-transition: 0.5s;
     transition: 0.5s;
   }
   &__desc {
@@ -308,6 +322,7 @@ export default {
     margin-top: 35px;
     &-carasel {
       display: flex;
+      transition: 0.5s;
     }
     &-title {
       margin: 30px;

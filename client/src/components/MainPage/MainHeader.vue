@@ -7,7 +7,7 @@
       :fontWeight="600"
     >
       <img
-        src="../assets/header_logo.svg"
+        src="@/assets/header_logo.svg"
         alt="Logo"
         class="header__logo__img"
       />

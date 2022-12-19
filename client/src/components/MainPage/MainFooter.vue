@@ -74,12 +74,12 @@
         >
         <a href="#"
           ><img
-            src="../assets/telegram-icn.svg"
+            src="@/assets/telegram-icn.svg"
             alt="telega"
             class="footer__img"
         /></a>
         <a href="https://vk.com/kovsh.andrew"
-          ><img src="../assets/vk-icn.svg" alt="vk" class="footer__img"
+          ><img src="@/assets/vk-icn.svg" alt="vk" class="footer__img"
         /></a>
       </div>
     </section>
@@ -88,7 +88,7 @@
 
 <script>
 export default {
-  name: 'my-footer',
+  name: 'MyFooter',
 };
 </script>
 
@@ -112,7 +112,7 @@ export default {
 
     &__field {
       background: none;
-      border-color: #9c53d5;
+      border: 1.5px solid #9c53d5;
       border-radius: 20px;
       min-width: 240px;
       height: 40px;
