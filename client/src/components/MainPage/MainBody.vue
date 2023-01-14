@@ -1,49 +1,52 @@
 <template>
   <main class="main">
-    <section class="intro">
+    <section class="intro" v-if="myPadeDate.intro">
       <main-text class="intro__title" :fontFamily="'montSer'"
-        ><h1>
-          Сервис для технических <br />
-          собеседований
+        ><h1 class="intro__title">
+          {{ myPadeDate.intro.title }}
         </h1>
       </main-text>
-      <main-text :fontFamily="'montSer'" :fontSize="18">
-        <p>
-          Мы предлагаем удобную систему для проведения и<br />
-          хранения технических собеседований в одном окне<br />
-          браузера
+      <main-text
+        class="intro__subtitle"
+        :fontFamily="'montSer'"
+        :fontSize="18"
+        v-if="myPadeDate.intro.subtitle"
+      >
+        <p class="intro__subtitle">
+          {{ myPadeDate.intro.subtitle.start }}
         </p>
       </main-text>
-      <my-button class="intro__btn" @click="showDialog">
+      <my-button class="intro__btn" @click="showDialog" v-if="myPadeDate.intro">
         <main-text
           class="intro__btn_text"
           :fontFamily="'montSer'"
           :fontSize="18"
           :fontWeight="600"
           :color="'#1E1E1E'"
-          >Начать</main-text
+          >{{ myPadeDate.intro.btn }}</main-text
         >
       </my-button>
-      <main-modal v-model:show="dialogVisible"></main-modal>
+      <main-modal
+        :myPadeDate="myPadeDate"
+        v-model:show="dialogVisible"
+      ></main-modal>
     </section>
     <section class="about">
-      <div class="about__title">
+      <div class="about__title" v-if="myPadeDate.intro">
         <main-text
           class="about__title-text"
           :fontFamily="'montSer'"
           :fontSize="22"
         >
           <center>
-            <b>ItvHunt</b> — это сервис для технических собеседований онлайн,
-            которая помогает кандидатам легко показать свои реальные навыки, а
-            команде найма сократить время на подготовку и проведение интервью, и
-            упростить принятие решений.
+            <b>{{ myPadeDate.intro.desc.title }}</b
+            >{{ myPadeDate.intro.desc.text }}
           </center>
         </main-text>
       </div>
     </section>
     <section class="function">
-      <nav class="function__nav">
+      <nav class="function__nav" v-if="myPadeDate.func">
         <i
           :style="{
             transform: 'translateX' + '(' + currentSlideIndex + '%' + ')',
@@ -57,7 +60,9 @@
             class="function-icn"
           />
           <main-text :fontFamily="'montSer'" :fontSize="20"
-            ><p class="items-title">Тестовое задание</p></main-text
+            ><p class="items-title">
+              {{ myPadeDate.func.icnTitle.a }}
+            </p></main-text
           >
         </button>
         <button class="function__items-tb" @click="twoSlide">
@@ -67,7 +72,9 @@
             class="function-icn"
           />
           <main-text :fontFamily="'montSer'" :fontSize="20"
-            ><p class="items-title">Сценарии интервью</p></main-text
+            ><p class="items-title">
+              {{ myPadeDate.func.icnTitle.b }}
+            </p></main-text
           >
         </button>
         <button class="function__items-tb" @click="threeSlide">
@@ -77,7 +84,9 @@
             class="function-icn"
           />
           <main-text :fontFamily="'montSer'" :fontSize="20"
-            ><p class="items-title">Отчеты</p></main-text
+            ><p class="items-title">
+              {{ myPadeDate.func.icnTitle.c }}
+            </p></main-text
           >
         </button>
       </nav>
@@ -88,7 +97,7 @@
             transform: 'translateX(-' + currentSlideIndex + '%)',
           }"
         >
-          <div class="function__desc_about">
+          <div class="function__desc_about" v-if="myPadeDate.func">
             <img
               src="@/assets/function-task.svg"
               alt="about-task"
@@ -98,21 +107,20 @@
               class="function__desc-title"
               :fontFamily="'montSer'"
               :fontSize="28"
-              >Тестовые задания с набором кода (в разработке)
+              >{{ myPadeDate.func.descFunc.title.task }}
               <main-text
                 class="function__desc-subtitle"
                 :fontFamily="'montSer'"
                 :fontSize="16"
-                >Отправке кандидату короткую задачу с ограничением по времени,
-                по ссылке будет редактор, после решения можно посмотреть
-                код</main-text
-              ></main-text
+              >
+                {{ myPadeDate.func.descFunc.subtitle.task }}
+              </main-text></main-text
             >
           </div>
 
-          <div class="function__desc_about">
+          <div class="function__desc_about" v-if="myPadeDate.func">
             <img
-              src="@/assets/function-task.svg"
+              src="@/assets/func-vacancy-img.png"
               alt="about-task"
               class="function__desc_img"
             />
@@ -120,19 +128,16 @@
               class="function__desc-title"
               :fontFamily="'montSer'"
               :fontSize="28"
-              >Конструктор сценариев интервью
+              >{{ myPadeDate.func.descFunc.title.vacy }}
               <main-text
                 class="function__desc-subtitle"
                 :fontFamily="'montSer'"
                 :fontSize="16"
-                >Подготовьте и используйте во время интервью шаблоны с<br />
-                вопросами и задачами. Вам доступны разделы по темам,<br />
-                блоки с вопросами, блок задач и блок навыков и знаний.<br />
-                Забудьте excel, гугл формс и пр.</main-text
+                >{{ myPadeDate.func.descFunc.subtitle.vacy }}</main-text
               ></main-text
             >
           </div>
-          <div class="function__desc_about">
+          <div class="function__desc_about" v-if="myPadeDate.func">
             <img
               src="@/assets/function-task.svg"
               alt="about-task"
@@ -142,19 +147,18 @@
               class="function__desc-title"
               :fontFamily="'montSer'"
               :fontSize="28"
-              >Отчёты
+              >{{ myPadeDate.func.descFunc.title.ans }}
               <main-text
                 class="function__desc-subtitle"
                 :fontFamily="'montSer'"
                 :fontSize="16"
-                >Все результаты хранятся в карточке кандидата. Оценка<br />
-                интервьюера, ответы, задачи и код с интервью.</main-text
+                >{{ myPadeDate.func.descFunc.subtitle.ans }}</main-text
               ></main-text
             >
           </div>
         </div>
       </div>
-      <div class="function__button">
+      <div class="function__button" v-if="myPadeDate.func">
         <my-button class="function__btn" @click="showDialog">
           <main-text
             class="function__btn-text"
@@ -162,32 +166,30 @@
             :fontSize="16"
             :fontWeight="500"
             :color="'#1E1E1E'"
-            >Посмотреть все возможности</main-text
+            >{{ myPadeDate.func.button }}</main-text
           >
         </my-button>
         <main-modal v-model:show="dialogVisible"></main-modal>
       </div>
     </section>
     <section class="feedback">
-      <div class="feedback__wrapper">
+      <div class="feedback__wrapper" v-if="myPadeDate.feedback">
         <main-text
           class="feedback__title"
           :fontFamily="'montSer'"
           :fontSize="32"
           :fontWeight="600"
-          >ItvHunt экономит в среднем 25 минут на каждое интервью</main-text
+          >{{ myPadeDate.feedback.title }}</main-text
         >
         <div class="feedback__users">
-          <div class="feedback__user">
+          <div class="feedback__user" v-if="myPadeDate.feedback.comments">
             <main-text
               :fontFamily="'montSer'"
               :fontSize="18"
               :color="'#1E1E1E'"
               :fontWeight="500"
-              ><b class="feedback__quote">&lt;&lt;</b> Когда мы стали
-              использовать Meet2Code вместо разных инструментов, время
-              подготовки и проведения собеседования сократилось на 20-30 минут,
-              а само интервью стало удобнее и менее утомительным.
+              ><b class="feedback__quote">&lt;&lt;</b>
+              {{ myPadeDate.feedback.comments.a }}
               <main-text
                 :fontFamily="'montSer'"
                 :fontSize="16"
@@ -195,20 +197,18 @@
                 class="feedback__author"
               >
                 <b class="feedback__quote feedback__quote--close">&gt;&gt;</b>
-                <i>Михаил, тимлид фронтенд-разработки</i>
+                <i>{{ myPadeDate.feedback.comments.b }}</i>
               </main-text>
             </main-text>
           </div>
-          <div class="feedback__user">
+          <div class="feedback__user" v-if="myPadeDate.feedback.comments">
             <main-text
               :fontFamily="'montSer'"
               :fontSize="18"
               :color="'#1E1E1E'"
               :fontWeight="500"
-              ><b class="feedback__quote">&lt;&lt;</b> Когда мы стали
-              использовать Meet2Code вместо разных инструментов, время
-              подготовки и проведения собеседования сократилось на 20-30 минут,
-              а само интервью стало удобнее и менее утомительным.
+              ><b class="feedback__quote">&lt;&lt;</b>
+              {{ myPadeDate.feedback.comments.a }}
               <main-text
                 :fontFamily="'montSer'"
                 :fontSize="16"
@@ -216,23 +216,45 @@
                 class="feedback__author"
               >
                 <b class="feedback__quote feedback__quote--close">&gt;&gt;</b>
-                <i>Андрей, тимлид бэкенд-разработки</i>
+                <i>{{ myPadeDate.feedback.comments.c }}</i>
               </main-text>
             </main-text>
           </div>
         </div>
+        <div class="feedback__button" v-if="myPadeDate.feedback">
+          <my-button class="feedback__btn" @click="showFeed">
+            <main-text
+              class="feedback__btn-text"
+              :fontFamily="'montSer'"
+              :fontSize="16"
+              :fontWeight="500"
+              :color="'#1E1E1E'"
+              >{{ myPadeDate.feedback.btn }}</main-text
+            >
+          </my-button>
+        </div>
+        <FeedbackModal
+          :myPadeDate="myPadeDate"
+          v-model:show="modalVisible"
+        ></FeedbackModal>
       </div>
     </section>
   </main>
 </template>
 
 <script>
+import FeedbackModal from '../UI/FeedbackModal.vue';
+
 export default {
   name: 'my-body',
+  props: {
+    myPadeDate: Object,
+  },
   data() {
     return {
       currentSlideIndex: 0,
       dialogVisible: false,
+      modalVisible: false,
     };
   },
   methods: {
@@ -248,7 +270,11 @@ export default {
     showDialog() {
       this.dialogVisible = true;
     },
+    showFeed() {
+      this.modalVisible = true;
+    },
   },
+  components: { FeedbackModal },
 };
 </script>
 
@@ -261,15 +287,19 @@ export default {
   background: url(@/assets/intro-bg.svg) no-repeat center;
   &__title {
     margin-bottom: 30px;
+    max-width: 600px;
+  }
+  &__subtitle {
+    max-width: 580px;
   }
   &__btn {
     max-width: 240px;
     height: 50px;
     background-color: #4dd362;
-    border-radius: 30px;
+    border-radius: 10px;
     margin: 40px 0;
     &_text {
-      margin: 12px 85px;
+      margin: 0 20px;
     }
   }
 }
@@ -298,11 +328,8 @@ export default {
     max-width: 300px;
     height: 35px;
     background-color: #4dd362;
-    border-radius: 30px;
+    border-radius: 10px;
     margin: 60px auto;
-    &-text {
-      margin: 6px 21px;
-    }
   }
   &__activeTabFocusLine {
     margin-top: 20px;
@@ -341,9 +368,15 @@ export default {
       border-radius: 10px;
     }
   }
+  &__button {
+    text-align: center;
+  }
 }
 .items-title {
   margin: 20px 0 40px;
+}
+.function__desc_img {
+  width: 600px;
 }
 .feedback {
   margin: 40px 0;
@@ -379,6 +412,68 @@ export default {
       right: -20px;
       left: auto;
     }
+  }
+  &__btn {
+    max-width: 200px;
+    height: 35px;
+    background-color: #4dd362;
+    border-radius: 10px;
+    margin: 60px auto;
+    &-text {
+      margin: 0 5px;
+      text-align: center;
+    }
+  }
+  &__button {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .function__desc_img {
+    width: 480px;
+  }
+  .function__desc_about {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 844px) {
+  .feedback__users {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .intro__subtitle {
+    font-size: 16px;
+  }
+  .intro__title {
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .function__desc_img {
+    width: 358px;
+  }
+  .function-icn {
+    width: 32px;
+  }
+  .items-title {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 340px) {
+  .items-title {
+    font-size: 12px;
+  }
+  .function__desc_img {
+    width: 288px;
+  }
+  .function__btn-text {
+    margin: 6px 12px;
+  }
+  .function-icn {
+    width: 22px;
   }
 }
 </style>

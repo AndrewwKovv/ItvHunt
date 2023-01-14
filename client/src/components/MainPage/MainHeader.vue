@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" v-if="myPadeDate.header">
     <main-text
       class="header__logo-wrapper"
       :fontFamily="'montSer'"
@@ -11,20 +11,48 @@
         alt="Logo"
         class="header__logo__img"
       />
-      ItvHunt
+      {{ myPadeDate.header.title }}
     </main-text>
     <nav class="header__nav">
-      <main-text class="header__text" :fontFamily="'montSer'" :fontSize="18"
-        >Возможности</main-text
-      >
-      <main-text class="header__text" :fontFamily="'montSer'" :fontSize="18"
-        >Контакты</main-text
-      >
-      <my-button class="header__btn">
-        <main-text class="header__text" :fontFamily="'montSer'" :fontSize="18"
-          >Войти</main-text
+      <button type="button" class="btn btn-dark">
+        <main-text
+          class="header__text"
+          :fontFamily="'montSer'"
+          :fontSize="18"
+          >{{ myPadeDate.header.abs }}</main-text
         >
-      </my-button>
+      </button>
+
+      <!-- <button type="button" class="btn btn-dark">
+        <main-text class="header__text" :fontFamily="'montSer'" :fontSize="18"
+          ><a
+            class="header__text_link"
+            href="https://github.com/AndrewwKovv/client-exams"
+            >{{ myPadeDate.header.git }}</a
+          ></main-text
+        >
+      </button> -->
+      <button type="button" class="btn btn-dark">
+        <main-text
+          class="header__text"
+          :fontFamily="'montSer'"
+          :fontSize="18"
+          >{{ myPadeDate.header.contact }}</main-text
+        >
+      </button>
+      <button type="button" @click="showDialog" class="btn btn-dark">
+        <main-text
+          class="header__text"
+          :fontFamily="'montSer'"
+          :fontSize="18"
+          >{{ myPadeDate.header.login }}</main-text
+        >
+      </button>
+
+      <auth-modal
+        :myPadeDate="myPadeDate"
+        v-model:show="dialogVisible"
+      ></auth-modal>
     </nav>
   </header>
 </template>
@@ -32,6 +60,19 @@
 <script>
 export default {
   name: 'my-header',
+  data() {
+    return {
+      dialogVisible: false,
+    };
+  },
+  methods: {
+    showDialog() {
+      this.dialogVisible = true;
+    },
+  },
+  props: {
+    myPadeDate: Object,
+  },
 };
 </script>
 
@@ -56,6 +97,38 @@ export default {
   }
   &__btn {
     padding: 1px 13px;
+    border-radius: 5px;
+  }
+  &__text_link {
+    color: white;
+    text-decoration: none;
+  }
+}
+@media screen and (max-width: 1030px) {
+  .header {
+    flex-wrap: wrap;
+    height: 110px;
+  }
+}
+@media screen and (max-width: 830px) {
+  .header {
+    height: 170px;
+  }
+}
+@media screen and (max-width: 770px) {
+  .header__nav {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 649px) {
+  .header {
+    height: 324px;
+    padding: 0 60px;
+  }
+  .header__nav {
+    gap: 10px;
+    flex-wrap: nowrap;
+    flex-direction: column;
   }
 }
 </style>

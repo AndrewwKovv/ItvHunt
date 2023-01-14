@@ -2,9 +2,10 @@ from django.db import models
 
 # Create your models here.
 class Task(models.Model):
-    type = models.CharField(max_length=30)
-    created_at = models.DateTimeField()
-    title = models.CharField(max_length=30)
-    desc = models.TextField()
-    answer = models.CharField(max_length=250)
-    language = models.CharField(max_length=30)
+    created_at = models.DateTimeField(verbose_name='время создания', auto_now_add = True)
+    update_at = models.DateTimeField(verbose_name='время обновления', auto_now = True)
+    title = models.CharField(verbose_name='Название задачи', max_length=255)
+    desc = models.TextField(verbose_name='Задача')
+    answer = models.TextField(verbose_name='Ответ')
+    language = models.CharField(verbose_name='Выбор языка', max_length=255)
+    completed = models.BooleanField(verbose_name='Завершение',default = False)

@@ -2,9 +2,14 @@
   <div class="modal" v-if="show" @click="hideDialog">
     <div class="modal__content" @click.stop>
       <main-text :fontFamily="'montSer'" :fontSize="26" :fontWeight="500"
-        >Быстрая регистрация</main-text
-      >
-      <form @submit.prevent class="modal__form">
+        >{{ myPadeDate.regis.title }}
+      </main-text>
+      <form @submit.prevent class="modal__form" method="post">
+        <select class="content__form">
+          <option selected disabled>Выберите деятельность</option>
+          <option value="Компания HR">Компания HR</option>
+          <option value="Кандидат">Кандидат</option>
+        </select>
         <input
           class="content__form"
           name="Name"
@@ -27,20 +32,17 @@
       <div class="modal__content-accept">
         <div for="btn-acceptt" class="modal__content-p">
           <main-text :fontFamily="'montSer'" :fontSize="14"
-            >При регистрации соглашаюсь с
-            <a href="#" class="modal__link"
-              >Пользовательским<br />
-              соглашением</a
-            >
-            и
-            <a href="#" class="modal__link"
-              >Политика конфиденциальности</a
-            ></main-text
+            >{{ myPadeDate.regis.text.start }}
+            <a href="#" class="modal__link">{{ myPadeDate.regis.text.pols }}</a>
+            {{ myPadeDate.regis.text.and }}
+            <a href="#" class="modal__link">{{
+              myPadeDate.regis.text.policy
+            }}</a></main-text
           >
         </div>
       </div>
       <div class="modal__btn">
-        <my-button class="btn__save" @click="onClick"
+        <my-button class="btn__save" type="submit" @click="onClick"
           ><main-text
             :fontFamily="'montSer'"
             :fontSize="22"
@@ -62,6 +64,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    myPadeDate: Object,
   },
   methods: {
     hideDialog() {
@@ -95,6 +98,9 @@ export default {
     min-height: 170px;
     min-width: 270px;
     padding: 35px;
+    &-p {
+      max-width: 400px;
+    }
   }
   &__form {
     display: flex;
@@ -103,6 +109,9 @@ export default {
   }
   &__link {
     color: #ffffff;
+  }
+  &__btn {
+    text-align: center;
   }
 }
 .content {
@@ -115,12 +124,14 @@ export default {
     height: 40px;
     padding-left: 10px;
     margin: 5px 0;
+    &_text {
+      color: #1e1e1e;
+    }
   }
 }
 .btn__save {
   margin: 15px 0;
   background: #4dd362;
   text-align: center;
-  height: 35px;
 }
 </style>

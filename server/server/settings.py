@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'task',
     'rest_framework',
     'corsheaders',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -52,8 +53,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8080/',
+    "http://localhost:8080",
 ]
 
 ROOT_URLCONF = 'server.urls'
@@ -75,6 +77,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'server.wsgi.application'
+
+AUTH_USER_MODEL = 'authentication.User'
 
 
 # Database

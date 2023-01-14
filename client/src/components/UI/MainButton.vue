@@ -14,6 +14,10 @@ export default {
 .btn {
   background: none;
   border: 1px solid #4dd362;
-  border-radius: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.75;
+  }
 }
 </style>

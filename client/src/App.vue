@@ -1,13 +1,11 @@
 <template>
   <div class="cont">
-    <main-page></main-page>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import MainPage from './components/MainPage/MyPage.vue';
 export default {
-  components: { MainPage },
   name: 'App',
 };
 </script>
@@ -18,5 +16,8 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body {
+  background-color: #1e1e1e;
 }
 </style>
