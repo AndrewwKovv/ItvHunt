@@ -9,3 +9,10 @@ class Task(models.Model):
     answer = models.TextField(verbose_name='Ответ')
     language = models.CharField(verbose_name='Выбор языка', max_length=255)
     completed = models.BooleanField(verbose_name='Завершение',default = False)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Задача'
+        verbose_name_plural = 'Задачи'

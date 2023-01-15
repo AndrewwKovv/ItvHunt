@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'meeting_time',
     'ownerCorp',
     'company',
+    'candidate',
 ]
 
 MIDDLEWARE = [
