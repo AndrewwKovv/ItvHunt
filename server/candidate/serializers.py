@@ -1,7 +1,15 @@
 from rest_framework import serializers
 from .models import Candidate
+# from .models import User
+
+# class UserSerializerForCandidate(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = '__all__'
 
 class CandidateSerializer(serializers.ModelSerializer):
+    # email_data = UserSerializerForCandidate(source='authentication', many=True)
     class Meta:
         model = Candidate
-        fields = ['id', 'user_email', 'created_at','stage']
+        fields = '__all__'
+        # exclude = ['candidate_email']

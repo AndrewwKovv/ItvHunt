@@ -2,10 +2,10 @@ from django.contrib import admin
 from candidate.models import Candidate
 # Register your models here.
 class CandidateAdmin(admin.ModelAdmin):
-    list_display = ('id','user_email', 'created_at', 'stage')
-    list_display_links = ('id','user_email','stage')
-    search_fields = ('id', 'user_email', 'stage')
-    # list_editable = ('user_email' ,)
+    list_display = ('id','email_candidate', 'created_at', 'stage')
+    list_display_links = ('id','email_candidate')
+    search_fields = ('id','email_candidate', 'stage')
+    list_editable = ('stage' ,)
     list_filter = ('stage',)
 
 

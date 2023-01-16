@@ -1,4 +1,13 @@
 from django.contrib import admin
 from vacancy.models import Vacancy
 # Register your models here.
-admin.site.register(Vacancy)
+class VacancyAdmin(admin.ModelAdmin):
+    list_display = ('id', 'created_at', 'title', 'link_vacancy')
+    list_display_links = ('id','title','link_vacancy')
+    search_fields = ('id', 'title','link_vacancy','candidate')
+    #list_editable = ('link_vacancy')
+    list_filter = ('link_vacancy','title',)
+
+
+
+admin.site.register(Vacancy, VacancyAdmin)

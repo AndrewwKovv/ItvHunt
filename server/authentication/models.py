@@ -5,10 +5,17 @@ from authentication.managers import UserManager
 
 # Create your models here.
 class User(AbstractBaseUser, PermissionsMixin):
+    HR = 'HR'
+    CANDIDATE = "CA"
+    ACTIVITY_ROLE_CHOICES = [
+        (HR ,'HR'),
+        (CANDIDATE,'Candidate'),
+    ]
+
     email = models.EmailField(verbose_name='Почта', max_length=255, unique=True)
     first_name = models.CharField(verbose_name='Имя', max_length=255)
-    bio = models.TextField(verbose_name='о себе')
-    activity_role = models.CharField(verbose_name='Деятельность', max_length=255)
+    bio = models.TextField(verbose_name='о себе', blank=True, null=True)
+    activity_role = models.CharField(verbose_name='Деятельность', max_length=255, choices=ACTIVITY_ROLE_CHOICES,default = HR)
     company_title = models.TextField(verbose_name='id компании', default='corp')
 
     is_active= models.BooleanField(verbose_name='активный пользователь', default=False)
@@ -26,6 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+        ordering = ['id', 'email']
 
 
     
