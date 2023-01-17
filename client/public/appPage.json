@@ -1,0 +1,36 @@
+{
+  "sidebar": {
+    "candidates": "Кандидаты",
+    "task": "Задачи",
+    "templates": "Шаблоны",
+    "vacancy": "Вакансии"
+  },
+  "vacanci": {
+    "btn": "+ Добавить вакансию",
+    "nameVac": "название",
+    "linkVac": "ссылка",
+    "createdVac": "добавлена"
+  },
+  
+    "vacancies": [
+      {
+        "id": "1",
+        "title": "Frontend",
+        "link": "https://events.webinar.ru/19401833/816087213/session/1068390057",
+        "created_at": "10.01.2022"
+      },
+      {
+        "id": "2",
+        "title": "Backend",
+        "link": "https://events.webinar.ru/19401833/816087213/session/1068390057",
+        "created_at": "10.01.2022"
+      },
+      {
+        "id": "3",
+        "title": "Fullstack",
+        "link": "https://events.webinar.ru/19401833/816087213/session/1068390057",
+        "created_at": "10.01.2022"
+      }
+    ]
+  
+}
