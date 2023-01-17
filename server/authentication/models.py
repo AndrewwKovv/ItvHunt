@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from simple_history.models import HistoricalRecords
+
 
 from authentication.managers import UserManager
 
@@ -17,6 +19,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     bio = models.TextField(verbose_name='о себе', blank=True, null=True)
     activity_role = models.CharField(verbose_name='Деятельность', max_length=255, choices=ACTIVITY_ROLE_CHOICES,default = HR)
     company_title = models.TextField(verbose_name='id компании', default='corp')
+    history = HistoricalRecords()
+
 
     is_active= models.BooleanField(verbose_name='активный пользователь', default=False)
     is_staff= models.BooleanField(verbose_name='персонал', default=False)

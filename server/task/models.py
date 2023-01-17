@@ -1,4 +1,7 @@
 from django.db import models
+from  rest_framework.pagination import PageNumberPagination
+from simple_history.models import HistoricalRecords
+
 
 # Create your models here.
 class Task(models.Model):
@@ -19,6 +22,7 @@ class Task(models.Model):
     answer = models.TextField(verbose_name='Ответ', blank=True, null=True)
     language = models.CharField(verbose_name='Выбор языка', max_length=255, choices=LANGUAGE_CHOICES, default = PYATHON)
     completed = models.BooleanField(verbose_name='Завершение', default = False)
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.title
@@ -26,3 +30,16 @@ class Task(models.Model):
     class Meta:
         verbose_name = 'Задача'
         verbose_name_plural = 'Задачи'
+        ordering = ['id', 'title']
+
+
+
+class LowResultsSetPagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 100
+    page_size_query_param = 'page_size'
+    max_page_size = 1000

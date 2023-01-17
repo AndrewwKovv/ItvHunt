@@ -13,3 +13,5 @@ class CandidateSerializer(serializers.ModelSerializer):
         model = Candidate
         fields = '__all__'
         # exclude = ['candidate_email']
+
+       

@@ -9,11 +9,12 @@ from meeting_time.viewsets import MeetingTimeViewSet
 router = routers.DefaultRouter()
 
 router.register(r'task',  TaskViewSet)
-router.register(r'authentication',  UserViewSet)
+router.register(r'auth',  UserViewSet)
 router.register(r'vacancy',  VacancyViewSet)
 router.register(r'candidate',  CandidateViewSet)
 router.register(r'company',  CompanyViewSet)
 router.register(r'meeting_time',  MeetingTimeViewSet)
+
 
 
 
