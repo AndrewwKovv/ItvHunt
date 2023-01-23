@@ -1,72 +1,73 @@
 <template>
-  <div
-    class="vacanci__item"
-    v-for="vacancies in validVacancies"
-    :key="vacancies.id"
-  >
+  <div class="task__item">
     <router-link
-      class="vacancy__link"
+      class="task__link"
       :to="{
-        name: 'vacancyPage',
+        name: 'taskPage',
         params: {
-          id: vacancies.id,
-          vacName: vacancies.title,
-          vacLink: vacancies.link,
+          id: row_data.id,
+          vacName: row_data.title,
         },
       }"
     >
       <main-text
-        class="vacanci__title"
+        class="task__title"
         :fontFamily="'montSer'"
         :fontSize="16"
         :fontWeight="500"
       >
-        {{ vacancies.title }}
+        {{ row_data.title }}
       </main-text>
       <main-text
-        class="vacanci__title vacanci__title_link"
+        class="task__title task__title_link"
         :fontFamily="'montSer'"
         :fontSize="16"
         :fontWeight="500"
       >
-        {{ vacancies.link }}
+        {{ row_data.desc }}
       </main-text>
       <main-text
-        class="vacanci__title_time"
+        class="task__title_time"
         :fontFamily="'montSer'"
         :fontSize="16"
         :fontWeight="500"
       >
-        {{ vacancies.created_at }}
-      </main-text></router-link
-    >
+        {{ formateDate(row_data.created_at) }}
+      </main-text>
+    </router-link>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-
+import { parseISO, format } from 'date-fns';
 export default {
-  name: 'vacanci-item',
-  computed: mapGetters(['validVacancies']),
-  methods: {
-    ...mapActions(['fetchVacancies']),
+  name: 'task-items',
+  props: {
+    row_data: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
   },
-  async mounted() {
-    // this.$store.dispatch('fetchVacancies');
-    this.fetchVacancies();
+  methods: {
+    formateDate(date) {
+      let res = parseISO(date);
+      date = res;
+      return format(date, 'dd.MM.yyyy');
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.vacancy__link {
+.task__link {
   display: flex;
-  justify-content: space-around;
-
+  justify-content: space-between;
+  padding: 0 10px;
   text-decoration: none;
 }
-.vacanci {
+.task {
   &__item {
     margin-top: 35px;
     border: 1px solid #343434;
@@ -82,7 +83,7 @@ export default {
       max-width: 208px;
     }
     &_link {
-      max-width: 248px;
+      max-width: 300px;
     }
   }
 }

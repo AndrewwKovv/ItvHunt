@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 export default {
   name: 'vacancy-modal',
   data() {
@@ -76,18 +76,18 @@ export default {
       if (this.title === this.falseBody) {
         console.log('!');
       } else {
-        this.createVacancies({
+        this.addVacancies({
           title: this.title,
-          link: this.link,
-          id: Date.now,
-          created_at: new Date(),
+          link_vacancy: this.link,
         });
         this.$emit('update:show', false);
         this.title = '';
         this.link = '';
       }
     },
+    ...mapActions(['addVacancies']),
   },
+
 };
 </script>
 

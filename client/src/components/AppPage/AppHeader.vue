@@ -54,6 +54,7 @@ export default {
 
 <style lang="scss" scoped>
 .app-header {
+  
   display: flex;
   align-items: center;
   flex-wrap: wrap;

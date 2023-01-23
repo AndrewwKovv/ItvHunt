@@ -57,7 +57,7 @@
 
 <script>
 import AppHeader from '../AppHeader.vue';
-import VacanciItem from '@/components/AppPage/Application/VacanciItem.vue';
+import VacanciItem from '@/components/AppPage/Application/Vacancies/VacanciItem.vue';
 
 export default {
   name: 'vacanci-page',
@@ -78,6 +78,7 @@ export default {
 <style lang="scss" scoped>
 .vacanci {
   margin-left: 130px;
+  min-height: 100vh;
   &__wrapper {
     padding: 25px;
   }
@@ -97,7 +98,8 @@ export default {
     margin-top: 75px;
     border: 1px solid #343434;
     border-radius: 5px;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 10px;
   }
   &__subtitle {
     margin-left: 15px;

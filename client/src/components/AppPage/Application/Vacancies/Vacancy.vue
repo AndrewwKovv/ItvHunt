@@ -65,14 +65,14 @@ export default {
   },
   props: {
     vacName: String,
-    vacLink: String,
+    // vacLink: String,
   },
   methods: {
     getTitleName() {
       this.title = this.$route.params.vacName;
     },
     getLinkAdress() {
-      this.link = this.$route.params.vacLink;
+      // this.link = this.$route.params.vacLink;
     },
     showDialog() {
       this.dialogVisible = true;

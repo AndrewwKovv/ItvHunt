@@ -27,6 +27,13 @@ const routes = [
           import('@/components/AppPage/Application/TasksPage.vue'),
       },
       {
+        path: '/tasks/:id:vacName',
+        name: 'taskPage',
+        props: true,
+        component: () =>
+          import('@/components/AppPage/Application/Tasks/TaskItems.vue'),
+      },
+      {
         path: '/templates',
         name: 'templates',
         props: true,
@@ -41,7 +48,7 @@ const routes = [
           import('@/components/AppPage/Application/VacanciPage.vue'),
       },
       {
-        path: '/vacanci/:id:vacName:vacLink',
+        path: '/vacanci/:id:vacName',
         name: 'vacancyPage',
         props: true,
         component: () =>

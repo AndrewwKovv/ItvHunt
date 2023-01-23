@@ -16,7 +16,7 @@
       </main-text>
       <form @submit.prevent class="modal__form">
         <input
-          v-model="login"
+          v-model="email"
           class="modal__form-content"
           name="email"
           type="text"
@@ -59,7 +59,7 @@ export default {
   name: 'auth-modal',
   data() {
     return {
-      login: '',
+      email: '',
       password: '',
       errored: false,
     };
@@ -77,11 +77,15 @@ export default {
       this.$emit('update:show', false);
     },
     isValidAuth() {
-      if ((this.login === 'login@mail.ru', this.password === '0000')) {
-        this.$router.push('/vacanci');
-      } else {
-        this.errored = true;
-      }
+      this.axios
+        .post(`http://localhost:8000/api/auth/login/`, { 'email': this.email, 'password': this.password })
+        .then(response => { this.setLogined(response.data.token) },
+        this.$router.push('settings')
+        )
+        .catch(err => { console.error(err) })
+    },
+    setLogined(token){
+      localStorage.setItem('token', token);
     },
     updateInput(event) {
       this.$emit('update:modelValue', event.target.value);

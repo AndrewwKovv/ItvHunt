@@ -15,22 +15,25 @@
           name="Name"
           type="text"
           placeholder="Ваше имя"
+          v-model="first_name"
         />
         <input
           class="content__form"
           name="email"
           type="text"
           placeholder="Почта"
+          v-model="email"
         />
         <input
           class="content__form"
           name="password"
-          type="text"
+          type="password"
           placeholder="Пароль"
+          v-model="password"
         />
       </form>
-      <div class="modal__content-accept">
-        <div for="btn-acceptt" class="modal__content-p">
+      <div class="modal__content-accept" v-if="myPadeDate.regis">
+        <div for="btn-acceptt" class="modal__content-p" >
           <main-text :fontFamily="'montSer'" :fontSize="14"
             >{{ myPadeDate.regis.text.start }}
             <a href="#" class="modal__link">{{ myPadeDate.regis.text.pols }}</a>
@@ -59,6 +62,14 @@
 <script>
 export default {
   name: 'main-modal',
+  data() {
+    return {
+      email: '',
+      password: '',
+      first_name: '',
+      changer: '',
+    }
+  },
   props: {
     show: {
       type: Boolean,
@@ -71,11 +82,14 @@ export default {
       this.$emit('update:show', false);
     },
     onClick() {
-      if (this.post.body === this.falseBody) {
-        console.log('!');
-      } else {
-        this.$emit('update:show', false);
-      }
+      this.$emit('update:show', false);
+      this.register();
+    },
+    register() {
+      this.axios
+        .post(`http://localhost:8000/api/auth/registration/`, { 'email': this.email, 'first_name': this.first_name, 'password': this.password })
+        .then(() => { this.$router.push('settings') })
+        .catch(err => { console.error(err) })
     },
   },
 };
