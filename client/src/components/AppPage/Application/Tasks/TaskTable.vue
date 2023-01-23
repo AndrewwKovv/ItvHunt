@@ -7,7 +7,6 @@
         placeholder="Поиск"
         v-model="searchTask"
       />
-      <p>{{ searchTasks }}</p>
       <my-button class="contact__button">
         <main-text
           class="contact__subtitle"
@@ -35,7 +34,7 @@
       >
         описание
       </main-text>
-      <div>
+      <div @click="sortByName">
         <main-text
           class="tasks__subtitle"
           :fontFamily="'montSer'"
@@ -47,7 +46,7 @@
       </div>
     </div>
     <task-items
-      v-for="tasks in tasks_data"
+      v-for="tasks in searchTasks"
       :key="tasks.id"
       :row_data="tasks"
     ></task-items>
@@ -74,10 +73,18 @@ export default {
     },
   },
   methods: {
+    sortByName() {
+      this.searchTasks.sort((b, a) => a.created_at.localeCompare(b.created_at));
+      console.log(this.searchTasks);
+    },
+  },
+  computed: {
     searchTasks() {
-      return this.tasks_data.filters((elem) => {
-        return elem.title.toLowerCase().includes(this.searchTask.toLowerCase());
-      });
+      return this.tasks_data.filter(
+        (tasks) =>
+          tasks.title.toLowerCase().includes(this.searchTask.toLowerCase()) ||
+          tasks.created_at.toLowerCase().includes(this.searchTask.toLowerCase())
+      );
     },
   },
 };
