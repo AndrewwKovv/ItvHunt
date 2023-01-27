@@ -31,7 +31,7 @@ const routes = [
         name: 'taskPage',
         props: true,
         component: () =>
-          import('@/components/AppPage/Application/Tasks/TaskItems.vue'),
+          import('@/components/AppPage/Application/Tasks/Task.vue'),
       },
       {
         path: '/templates',

@@ -10,30 +10,36 @@
         },
       }"
     >
-      <main-text
-        class="task__title"
-        :fontFamily="'montSer'"
-        :fontSize="16"
-        :fontWeight="500"
-      >
-        {{ row_data.title }}
-      </main-text>
-      <main-text
-        class="task__title task__title_link"
-        :fontFamily="'montSer'"
-        :fontSize="16"
-        :fontWeight="500"
-      >
-        {{ row_data.desc }}
-      </main-text>
-      <main-text
-        class="task__title_time"
-        :fontFamily="'montSer'"
-        :fontSize="16"
-        :fontWeight="500"
-      >
-        {{ formateDate(row_data.created_at) }}
-      </main-text>
+      <div class="task__data">
+        <main-text
+          class="task__title"
+          :fontFamily="'montSer'"
+          :fontSize="16"
+          :fontWeight="500"
+        >
+          {{ row_data.title }}
+        </main-text>
+      </div>
+      <div class="task__data">
+        <main-text
+          class="task__title task__title_link"
+          :fontFamily="'montSer'"
+          :fontSize="16"
+          :fontWeight="500"
+        >
+          {{ row_data.desc }}
+        </main-text>
+      </div>
+      <div class="task__data">
+        <main-text
+          class="task__title_time"
+          :fontFamily="'montSer'"
+          :fontSize="16"
+          :fontWeight="500"
+        >
+          {{ formateDate(row_data.created_at) }}
+        </main-text>
+      </div>
     </router-link>
   </div>
 </template>
@@ -66,6 +72,7 @@ export default {
   justify-content: space-between;
   padding: 0 10px;
   text-decoration: none;
+  align-items: center;
 }
 .task {
   &__item {
@@ -77,13 +84,20 @@ export default {
     }
   }
   &__title {
-    margin: 15px 0 15px 15px;
+    margin: 15px 0 15px;
     word-break: break-word;
-    &_time {
-      max-width: 208px;
-    }
-    &_link {
-      max-width: 300px;
+
+    // &_time {
+    //   max-width: 300px;
+    // }
+    // &_link {
+    //   max-width: 300px;
+    // }
+  }
+  &__data {
+    width: 100%;
+    &:last-child {
+      text-align: right;
     }
   }
 }

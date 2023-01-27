@@ -39,7 +39,7 @@
               />
               <my-button type="submit" class="contact__btn"
                 ><main-text
-                  class="contact__btn_text"
+                  class="contact__btn-text"
                   :fontFamily="'montSer'"
                   :fontSize="16"
                 >
@@ -132,7 +132,7 @@ export default {
     border-color: #9c53d5;
     min-width: 240px;
     height: 40px;
-    &_text {
+    &-text {
       text-align: center;
     }
   }

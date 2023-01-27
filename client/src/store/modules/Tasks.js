@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { GET, POST } from '@/api/axios-api';
+import { GET, POST, DELETE } from '@/api/axios-api';
 export default {
   state: {
     tasks: [],
@@ -33,6 +33,9 @@ export default {
       ctx.commit('createTasks', response.data);
       ctx.dispatch('fetchTasks');
     //   console.log(response.data);
+    },
+    async deleteTask(ctx, payload) {
+      const response = await DELETE()
     },
   },
 };

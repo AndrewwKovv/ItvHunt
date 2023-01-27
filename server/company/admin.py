@@ -9,4 +9,6 @@ class CompanyAdmin(admin.ModelAdmin):
     #list_editable = ('title',)
     list_filter = ('title',)
 
+    raw_id_fields = ['vacancies', ]
+
 admin.site.register(Company, CompanyAdmin)

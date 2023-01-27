@@ -1,67 +1,68 @@
 <template>
-  <div
-    class="vacanci__item"
-    v-for="vacancies in validVacancies"
-    :key="vacancies.id"
-  >
+  <div class="vacanci__item">
     <router-link
       class="vacancy__link"
       :to="{
         name: 'vacancyPage',
         params: {
-          id: vacancies.id,
-          vacName: vacancies.title,
+          id: vacancies_data.id,
+          vacName: vacancies_data.title,
           // vacLink: vacancies.link_vacancy,
         },
       }"
     >
-      <main-text
-        class="vacanci__title"
-        :fontFamily="'montSer'"
-        :fontSize="16"
-        :fontWeight="500"
-      >
-        {{ vacancies.title }}
-      </main-text>
-      <main-text
-        class="vacanci__title vacanci__title_link"
-        :fontFamily="'montSer'"
-        :fontSize="16"
-        :fontWeight="500"
-      >
-        {{ vacancies.link_vacancy }}
-      </main-text>
-      <main-text
-        class="vacanci__title_time"
-        :fontFamily="'montSer'"
-        :fontSize="16"
-        :fontWeight="500"
-      >
-        {{ formateDate(vacancies.created_at) }}
-      </main-text></router-link
+      <div class="vacanci__data">
+        <main-text
+          class="vacanci__title"
+          :fontFamily="'montSer'"
+          :fontSize="16"
+          :fontWeight="500"
+        >
+          {{ vacancies_data.title }}
+        </main-text>
+      </div>
+      <div class="vacanci__data">
+        <main-text
+          class="vacanci__title vacanci__title_link"
+          :fontFamily="'montSer'"
+          :fontSize="16"
+          :fontWeight="500"
+        >
+          {{ vacancies_data.link_vacancy }}
+        </main-text>
+      </div>
+      <div class="vacanci__data">
+        <main-text
+          class="vacanci__title_time"
+          :fontFamily="'montSer'"
+          :fontSize="16"
+          :fontWeight="500"
+        >
+          {{ formateDate(vacancies_data.created_at) }}
+        </main-text>
+      </div></router-link
     >
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import { parseISO, format } from 'date-fns';
 export default {
   name: 'vacanci-item',
-  computed: {
-    ...mapGetters(['validVacancies']),
+  props: {
+    vacancies_data: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
   },
   methods: {
-    ...mapActions(['fetchVacancies']),
     formateDate(date) {
       let res = parseISO(date);
       date = res;
       return format(date, 'dd.MM.yyyy');
     },
-  },
-  async mounted() {
-    // this.$store.dispatch('fetchVacancies');
-    this.fetchVacancies();
   },
 };
 </script>
@@ -72,6 +73,7 @@ export default {
   justify-content: space-between;
   padding: 0 10px;
   text-decoration: none;
+  align-items: center;
 }
 .vacanci {
   &__item {
@@ -85,11 +87,17 @@ export default {
   &__title {
     margin: 15px 0 15px 15px;
     word-break: break-word;
-    &_time {
-      max-width: 208px;
-    }
-    &_link {
-      max-width: 300px;
+    // &_time {
+    //   max-width: 208px;
+    // }
+    // &_link {
+    //   max-width: 300px;
+    // }
+  }
+  &__data {
+    width: 100%;
+    &:last-child {
+      text-align: right;
     }
   }
 }

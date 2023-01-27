@@ -82,8 +82,7 @@ export default {
     searchTasks() {
       return this.tasks_data.filter(
         (tasks) =>
-          tasks.title.toLowerCase().includes(this.searchTask.toLowerCase()) ||
-          tasks.created_at.toLowerCase().includes(this.searchTask.toLowerCase())
+          tasks.title.toLowerCase().includes(this.searchTask.toLowerCase()) || tasks.desc.toLowerCase().includes(this.searchTask.toLowerCase())
       );
     },
   },
@@ -121,6 +120,7 @@ export default {
     max-width: 250px;
     height: 25px;
     padding: 5px;
+    color: white;
   }
 }
 .contact {

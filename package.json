@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "axios": "^1.2.3",
+    "vue-axios": "^3.5.2"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3"
+  }
+}
