@@ -4,10 +4,10 @@ from .models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['password','email', 'last_login','first_name','bio','activity_role','company_title','is_active']
+        fields = ['id','password','email', 'last_login','first_name','bio','activity_role','company_title','is_active']
         extra_kwargs = {
             'password': {'write_only': True}
-        }
+        } # скрыть пароль
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)

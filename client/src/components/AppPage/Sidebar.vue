@@ -116,7 +116,7 @@ aside {
     flex: 1 1 0%;
   }
   .menu {
-    margin: 0 -1rem;
+    margin: 0 -1rem 15px;
     .button {
       align-items: center;
       text-decoration: none;

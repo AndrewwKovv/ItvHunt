@@ -1,6 +1,7 @@
 from django.db import models
 from  rest_framework.pagination import PageNumberPagination
 from simple_history.models import HistoricalRecords
+from rest_framework.response import Response
 
 
 # Create your models here.
@@ -38,8 +39,12 @@ class LowResultsSetPagination(PageNumberPagination):
     page_size = 5
     page_size_query_param = 'page_size'
     max_page_size = 100
-
-class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 100
-    page_size_query_param = 'page_size'
-    max_page_size = 1000
+    def get_paginated_response(self, data):
+        return Response({
+            'links': {
+                'next': self.get_next_link(),
+                'previos': self.get_previous_link()
+            },
+            'count': self.page.paginator.count,
+            'tasks': data
+        })

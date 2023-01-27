@@ -5,6 +5,7 @@ from vacancy.viewsets import VacancyViewSet
 from candidate.viewsets import CandidateViewSet
 from company.viewsets import CompanyViewSet
 from meeting_time.viewsets import MeetingTimeViewSet
+# from task.viewsets import TaskFilterBackend
 
 router = routers.DefaultRouter()
 
@@ -14,6 +15,9 @@ router.register(r'vacancy',  VacancyViewSet)
 router.register(r'candidate',  CandidateViewSet)
 router.register(r'company',  CompanyViewSet)
 router.register(r'meeting_time',  MeetingTimeViewSet)
+# router.register(r'qtask',  TaskFilterBackend)
+
+
 
 
 

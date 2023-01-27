@@ -1,5 +1,6 @@
-// import axios from 'axios';
-
+/* eslint-disable no-unused-vars */
+import axios from 'axios';
+import { GET, POST } from '@/api/axios-api';
 export default {
   state: {
     vacancies: [],
@@ -7,7 +8,7 @@ export default {
   getters: {
     validVacancies(state) {
       return state.vacancies.filter((v) => {
-        return v.title && v.link;
+        return v.title;
       });
     },
     allVacancies(state) {
@@ -23,12 +24,17 @@ export default {
     },
   },
   actions: {
-    async fetchVacancies() {
-      // axios
-      // .get('/main.json')
-      // .then((response) => {
-      //   ctx.commit('updateVacancies', response.data.vacancies);
-      // });
+    async fetchVacancies(ctx) {
+      const response = await GET(`/api/vacancy/`);
+      // this.vacancies = response.data.results;
+      ctx.commit('updateVacancies', response.data.vacancies);
+      // console.log(response.data);
+    },
+    async addVacancies(ctx, payload) {
+      const response = await POST(`/api/vacancy/`, payload);
+      ctx.commit('createVacancies', response.data);
+      ctx.dispatch('fetchVacancies');
+      // console.log(response.data);
     },
   },
 };

@@ -18,7 +18,7 @@
       </main-text>
       <my-button class="intro__btn" @click="showDialog" v-if="myPadeDate.intro">
         <main-text
-          class="intro__btn_text"
+          class="intro__btn-text"
           :fontFamily="'montSer'"
           :fontSize="18"
           :fontWeight="600"
@@ -97,11 +97,11 @@
             transform: 'translateX(-' + currentSlideIndex + '%)',
           }"
         >
-          <div class="function__desc_about" v-if="myPadeDate.func">
+          <div class="function__desc-about" v-if="myPadeDate.func">
             <img
               src="@/assets/function-task.svg"
               alt="about-task"
-              class="function__desc_img"
+              class="function__desc-img"
             />
             <main-text
               class="function__desc-title"
@@ -118,11 +118,11 @@
             >
           </div>
 
-          <div class="function__desc_about" v-if="myPadeDate.func">
+          <div class="function__desc-about" v-if="myPadeDate.func">
             <img
               src="@/assets/func-vacancy-img.png"
               alt="about-task"
-              class="function__desc_img"
+              class="function__desc-img"
             />
             <main-text
               class="function__desc-title"
@@ -137,11 +137,11 @@
               ></main-text
             >
           </div>
-          <div class="function__desc_about" v-if="myPadeDate.func">
+          <div class="function__desc-about" v-if="myPadeDate.func">
             <img
               src="@/assets/function-task.svg"
               alt="about-task"
-              class="function__desc_img"
+              class="function__desc-img"
             />
             <main-text
               class="function__desc-title"
@@ -298,7 +298,7 @@ export default {
     background-color: #4dd362;
     border-radius: 10px;
     margin: 40px 0;
-    &_text {
+    &-text {
       margin: 0 20px;
     }
   }
@@ -357,14 +357,14 @@ export default {
     &-subtitle {
       margin-top: 15px;
     }
-    &_about {
+    &-about {
       display: flex;
       align-items: center;
       min-width: 100%;
       background: url(@/assets/func-about-bg.svg) no-repeat center;
       background-size: cover;
     }
-    &_img {
+    &-img {
       border-radius: 10px;
     }
   }
@@ -375,7 +375,7 @@ export default {
 .items-title {
   margin: 20px 0 40px;
 }
-.function__desc_img {
+.function__desc-img {
   width: 600px;
 }
 .feedback {
